@@ -1,0 +1,31 @@
+# Virtual Environment
+.venv/
+venv/
+ENV/
+env/
+
+# Environment Variables & Secrets
+.env
+*.env
+
+# Large Model Weights (Downloaded automatically by SentenceTransformers)
+*.safetensors
+*.bin
+*.pt
+*.onnx
+
+# Python Cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Database / Vector Store
+chroma_db/
+chroma_db
+*.db
+*.sqlite3
+
+# IDE / System files
+.vscode/
+.idea/
+.DS_Store
