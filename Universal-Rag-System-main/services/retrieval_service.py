@@ -11,7 +11,11 @@ def get_reranker():
     import os
     
     local_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "local_reranker")
-    if os.path.exists(local_path):
+    has_weights = os.path.exists(local_path) and (
+        os.path.exists(os.path.join(local_path, "model.safetensors")) or 
+        os.path.exists(os.path.join(local_path, "pytorch_model.bin"))
+    )
+    if has_weights:
         model_name_or_path = local_path
     else:
         model_name_or_path = "cross-encoder/ms-marco-MiniLM-L-6-v2"

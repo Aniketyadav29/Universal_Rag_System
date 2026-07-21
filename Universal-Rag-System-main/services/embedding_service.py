@@ -10,10 +10,14 @@ def get_embedding_model():
     
     # Path to local model committed in the repository
     local_model_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "local_model")
-    if os.path.exists(local_model_path):
+    has_weights = os.path.exists(local_model_path) and (
+        os.path.exists(os.path.join(local_model_path, "model.safetensors")) or 
+        os.path.exists(os.path.join(local_model_path, "pytorch_model.bin"))
+    )
+    if has_weights:
         model_name_or_path = local_model_path
     else:
-        # Fallback to downloading if local model is not found
+        # Fallback to downloading from HuggingFace if local model weights are not found
         model_name_or_path = "sentence-transformers/all-MiniLM-L6-v2"
         
     return SentenceTransformer(model_name_or_path, device=device)
