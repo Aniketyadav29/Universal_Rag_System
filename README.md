@@ -85,7 +85,7 @@ An end-to-end, enterprise-grade **Retrieval-Augmented Generation (RAG) System** 
                                                     ▼
                                ┌─────────────────────────────────────────┐
                                │       Document & Web Extractor          │
-                               │  (PDF, DOCX, TXT, CSV, Excel, Web URL) │
+                               │  (PDF, DOCX, TXT, CSV, Excel, Web URL)  │
                                └────────────────────┬────────────────────┘
                                                     │
                                                     ▼
@@ -116,7 +116,7 @@ An end-to-end, enterprise-grade **Retrieval-Augmented Generation (RAG) System** 
                                                     ▼ (Optional)
                                ┌─────────────────────────────────────────┐
                                │     Cross-Encoder Re-Ranking Stage      │
-                               │     (ms-marco-MiniLM-L-6-v2)           │
+                               │     (ms-marco-MiniLM-L-6-v2)            │
                                └────────────────────┬────────────────────┘
                                                     │
                                                     ▼
