@@ -1,0 +1,142 @@
+================================================================================
+                        UNIVERSAL RAG SYSTEM - OVERVIEW
+================================================================================
+
+--------------------------------------------------------------------------------
+1. PROJECT KA HIGH-LEVEL OVERVIEW (HINGLISH)
+--------------------------------------------------------------------------------
+Yeh Universal RAG (Retrieval-Augmented Generation) System project ek production-grade, 
+end-to-end AI Document Question-Answering Application hai jise Python, Streamlit, 
+ChromaDB aur Groq API ka use karke banaya gaya hai.
+
+Iska Main Kaam Kya Hai?
+1. Multi-Format Ingestion: User apni pasand ka document (PDF, Word DOCX, Excel XLSX, 
+   CSV, Text file, JSON) upload kar sakta hai ya kisi Web Page / URL ka link de 
+   sakta hai.
+2. Chunking & Indexing: App us file ya website se text extract karti hai, uske 
+   chote-chote chunks banati hai, aur unhe numerical vectors (embeddings) me 
+   convert karke ChromaDB Vector Database me store kar leti hai.
+3. Hybrid Search & Re-ranking: Jab user koi query/sawal puchta hai, toh app 
+   Dense Vector Search aur BM25 Keyword Search dono ko mila kar (Hybrid Search + 
+   Cross-Encoder Re-ranking) sabse relevant info dhundti hai.
+4. Sub-Second LLM Answer: Dhunde gaye accurate chunks ko context ke roop me 
+   Groq LLM (Llama 3 / Mixtral) ko bheja jata hai, jo exact facts par based 
+   conversational answer generate karta hai.
+
+
+--------------------------------------------------------------------------------
+2. SYSTEM FLOW DIAGRAM
+--------------------------------------------------------------------------------
+┌─────────────────────────────────┐      ┌───────────────────────────────┐
+│ File Upload / Web URL Scrape    │ ───► │ Parent-Child Text Chunking    │
+│ (PDF, DOCX, CSV, Excel, TXT)    │      │ (Parent: 3000ch, Child: 400ch)│
+└─────────────────────────────────┘      └───────────────────────────────┘
+                                                         │
+                                                         ▼
+┌─────────────────────────────────┐      ┌───────────────────────────────┐
+│ Hybrid Search & Re-ranking      │ ◄─── │ Vector & Keyword Indexing     │
+│ (Dense Vector + BM25 + RRF)     │      │ (ChromaDB + BM25Okapi)        │
+└─────────────────────────────────┘      └───────────────────────────────┘
+                 │
+                 ▼
+┌─────────────────────────────────┐      ┌───────────────────────────────┐
+│ Groq LLM API Inference          │ ───► │ Streamlit Web UI              │
+│ (Strict Context-based Answer)   │      │ (ChatGPT style UI Output)     │
+└─────────────────────────────────┘      └───────────────────────────────┘
+
+
+--------------------------------------------------------------------------------
+3. MAIN TECHNOLOGIES AUR UNKA USE
+--------------------------------------------------------------------------------
+- Streamlit: Web application frontend UI banane ke liye (file upload, sidebar options, 
+  chat layout, theme control).
+
+
+- Groq API: Super-fast LLM responses dene ke liye (models: llama-3.3-70b-versatile, 
+  llama-3.1-8b-instant, mixtral-8x7b-32768).
+
+
+- ChromaDB: Local persistent vector database jahan text chunks aur unki vector 
+  embeddings save hoti hain.
+
+
+- Sentence-Transformers & PyTorch: Text ko vector embeddings me badalna 
+  (all-MiniLM-L6-v2) aur retrieval results ko re-rank karna (ms-marco-MiniLM-L-6-v2).
+- LangChain Text Splitters: Parent-Child Chunking implement karne ke liye (small 
+  child chunks for search, large parent context for LLM).
+
+
+- Rank-BM25: Lexical/Keyword-based exact matching search ke liye.
+
+
+- PyMuPDF (fitz): PDFs se text fast aur accurately extract karne ke liye.
+
+- Pandas & OpenPyXL: CSV aur Excel spreadsheet data ko clean format me parse 
+  karne ke liye.
+
+- Python-Docx: Word files (.docx) se text extract karne ke liye.
+
+- BeautifulSoup4 & Requests: Websites/URLs se unnecessary HTML tags (<script>, 
+  <style>) hata kar main content scrape karne ke liye.
+  
+- Python-Dotenv: Secret keys (jaise GROQ_API_KEY) ko .env file se secure tarike 
+  se load karne ke liye.
+
+
+--------------------------------------------------------------------------------
+4. HAR EK FILE KA DETAILED EXPLANATION
+--------------------------------------------------------------------------------
+
+[ Root Directory: Universal_Rag_System/ ]
+- README.md: Project ki main documentation file jisme feature list, architecture 
+  diagram, local installation guide aur Streamlit deployment instructions likhi hain.
+- .gitignore: Git ko batata hai ki kaunse heavy folders (jaise chroma_db/, .venv/) 
+  ya secret files (jaise .env) GitHub par push nahi karne hain.
+
+[ Application Directory: Universal-Rag-System-main/ ]
+- app.py: 
+  Project ki main UI aur Control File. Streamlit interface render karta hai, 
+  sidebar controls (model selection, temperature, hybrid search toggle) manage 
+  karta hai, file ingestion, progress updates aur streaming answers handling karta hai.
+- requirements.txt: 
+  Sabhi required Python packages (Streamlit, ChromaDB, Sentence-Transformers, etc.) 
+  ki list.
+- deployment_guide.md: 
+  App ko Streamlit Community Cloud par deploy karne ki step-by-step guide.
+- .env: 
+  Local environment file jisme GROQ_API_KEY store hoti hai.
+- .streamlit/config.toml: 
+  Streamlit server settings jisme upload limit 200MB set ki gayi hai aur CORS options 
+  configure hain.
+
+[ Backend Services: Universal-Rag-System-main/services/ ]
+- document_service.py: 
+  Master Document Parser. File extension check karta hai (PDF, TXT, JSON, DOCX, CSV, 
+  XLSX) aur sahi service ko call karke page-wise text return karta hai.
+- pdf_service.py: 
+  PyMuPDF (fitz) ka use karke PDF pages se text extract karta hai timeout checks ke sath.
+- web_service.py: 
+  requests aur BeautifulSoup se website ka HTML download karke footer/navbar/scripts 
+  hata kar readable body text nikalta hai.
+- chunk_service.py: 
+  Parent-Child Chunker. Large text ko 3000-character parent blocks me todta hai aur 
+  400-character child chunks banata hai.
+- embedding_service.py: 
+  Text chunks ko vector numbers me badalta hai (GPU/CPU auto-selection ke sath).
+- vector_service.py: 
+  ChromaDB Vector Store Manager. Database collections create/delete karta hai, 
+  vector embeddings store karta hai, aur stale collections cleanup karta hai.
+- retrieval_service.py: 
+  RAG System ki Search Engine. Dense Vector Search aur BM25 Keyword Search ko 
+  RRF (Reciprocal Rank Fusion) se merge karta hai aur Cross-Encoder Re-ranker 
+  se re-score karta hai.
+- llm_service.py: 
+  Groq API ko prompt aur retrieved context chunks bhejta hai. Greetings detect karke 
+  DB search bypass karta hai aur rate-limits ke liye automatic retry logic run karta hai.
+
+[ Pre-downloaded Local Models: Universal-Rag-System-main/ ]
+- local_model/: 
+  Pre-downloaded all-MiniLM-L6-v2 embedding model weights aur tokenizer settings.
+- local_reranker/: 
+  Pre-downloaded ms-marco-MiniLM-L-6-v2 cross-encoder re-ranker weights.
+================================================================================
