@@ -31,6 +31,7 @@ An end-to-end, enterprise-grade **Retrieval-Augmented Generation (RAG) System** 
 
 ## ✨ Key Features
 
+
 - **🌐 Multi-Source Ingestion Engine**:
   - **Document Processing**: Parses `PDF`, `DOCX`, `TXT`, `CSV`, `XLSX`/`XLS`, and `JSON` files.
   - **Structured Tabular Data Parsing**: Converts CSV & Excel spreadsheets into structured row-by-row key-value formats to prevent context dilution.
