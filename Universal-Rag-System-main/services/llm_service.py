@@ -29,12 +29,61 @@ def is_conversational_query(text):
         
     return False
 
+def get_available_models(api_key=None):
+    """
+    Fetches available active chat models from Groq API for the given API key.
+    Excludes audio/embedding/safeguard models and orders them logically.
+    Falls back to verified active chat models if the API call fails or key is missing.
+    """
+    fallback_models = [
+        "openai/gpt-oss-120b",
+        "openai/gpt-oss-20b",
+        "qwen/qwen3.8-27b",
+        "allam-2-7b",
+        "llama-3.3-70b-versatile",
+        "llama-3.1-8b-instant"
+    ]
+    if not api_key:
+        return fallback_models
+
+    try:
+        headers = {"Authorization": f"Bearer {api_key}"}
+        res = requests.get("https://api.groq.com/openai/v1/models", headers=headers, timeout=5)
+        if res.status_code == 200:
+            data = res.json().get("data", [])
+            chat_models = []
+            excluded_keywords = ["whisper", "guard", "safeguard", "orpheus", "embedding"]
+            for m in data:
+                m_id = m.get("id", "")
+                if m.get("active", True) and not any(kw in m_id.lower() for kw in excluded_keywords):
+                    chat_models.append(m_id)
+            
+            preferred_order = [
+                "openai/gpt-oss-120b",
+                "openai/gpt-oss-20b",
+                "qwen/qwen3.8-27b",
+                "allam-2-7b",
+                "llama-3.3-70b-versatile",
+                "llama-3.1-8b-instant"
+            ]
+            ordered_models = [m for m in preferred_order if m in chat_models]
+            for m in chat_models:
+                if m not in ordered_models:
+                    ordered_models.append(m)
+                    
+            if ordered_models:
+                return ordered_models
+    except Exception:
+        pass
+
+    return fallback_models
+
 def generate_answer(
     query,
     context_chunks,
     api_key,
     chat_history=None,
-    model="llama-3.3-70b-versatile",
+    model="openai/gpt-oss-120b",
     temperature=0.2
 ):
     """
@@ -58,7 +107,8 @@ def generate_answer(
             )
             user_prompt = query
         else:
-            return "I cannot find the answer in the provided documents."
+            yield "I cannot find the answer in the provided documents."
+            return
     else:
         # Format the context chunks for the prompt with index labels
         formatted_chunks = []
@@ -169,6 +219,18 @@ def generate_answer(
                 else:
                     # Final attempt failed
                     raise Exception("Groq API Rate Limit reached (Status 429). Please try again in a moment.")
+            elif response.status_code in [400, 404] and payload.get("model") != "openai/gpt-oss-120b":
+                # Automatically fallback to standard working model if requested model is unavailable/decommissioned
+                try:
+                    import json
+                    err_data = response.json()
+                    err_msg = err_data.get("error", {}).get("message", response.text)
+                except Exception:
+                    err_msg = response.text
+                if any(k in err_msg.lower() for k in ["does not exist", "decommissioned", "not have access", "unsupported"]):
+                    payload["model"] = "openai/gpt-oss-120b"
+                    continue
+                raise Exception(f"Groq API Error (Status {response.status_code}): {err_msg}")
             else:
                 try:
                     import json

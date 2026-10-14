@@ -17,11 +17,11 @@ from services.vector_service import store_chunks, delete_collection, get_db_stat
 from services.retrieval_service import search_chunks
 import services.llm_service
 try:
-    from services.llm_service import generate_answer, is_conversational_query
+    from services.llm_service import generate_answer, is_conversational_query, get_available_models
 except ImportError:
     import importlib
     importlib.reload(services.llm_service)
-    from services.llm_service import generate_answer, is_conversational_query
+    from services.llm_service import generate_answer, is_conversational_query, get_available_models
 
 # Page Configuration
 st.set_page_config(
@@ -138,8 +138,13 @@ section[data-testid="stSidebar"] {
 </style>
 """, unsafe_allow_html=True)
 
-# Read Groq API Key silently from .env
+# Read Groq API Key silently from .env or Streamlit Secrets
 api_key = os.getenv("GROQ_API_KEY", "")
+if not api_key:
+    try:
+        api_key = st.secrets.get("GROQ_API_KEY", "")
+    except Exception:
+        pass
 
 # Initialize session ID
 if "session_id" not in st.session_state:
@@ -174,16 +179,11 @@ db_stats = st.session_state.db_stats
 with st.sidebar:
     st.markdown("<div class='sidebar-title'>Control Panel</div>", unsafe_allow_html=True)
     
-    # default to llama-3.1-8b-instant for fast generations
+    available_models = get_available_models(api_key)
     model_choice = st.selectbox(
         "Model Selection",
-        options=[
-            "llama-3.1-8b-instant",
-            "llama-3.3-70b-versatile",
-            "mixtral-8x7b-32768",
-            "gemma2-9b-it"
-        ],
-        index=1,
+        options=available_models,
+        index=0,
         help="Select the model for response generation."
     )
     
