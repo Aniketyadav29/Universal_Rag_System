@@ -29,48 +29,50 @@ st.set_page_config(
     layout="centered"
 )
 
-# Custom 3D Glassmorphic Aesthetic & Micro-animations
+# Custom 3D Ancient Codex / Oracle Aesthetic
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800;900&family=Outfit:wght@300;400;500;600;700&display=swap');
 
 html, body, [class*="css"], .stMarkdown {
     font-family: 'Outfit', sans-serif !important;
 }
 
-/* 3D Immersive Ambient Background */
+/* 3D Ancient Obsidian & Ember Background */
 .stApp {
     background: 
-        radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.16) 0%, transparent 45%),
-        radial-gradient(circle at 90% 85%, rgba(168, 85, 247, 0.14) 0%, transparent 50%),
-        radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 55%),
-        #070a12 !important;
+        radial-gradient(circle at 15% 10%, rgba(217, 119, 6, 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 85% 85%, rgba(180, 83, 9, 0.14) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(120, 53, 15, 0.09) 0%, transparent 55%),
+        #0a0705 !important;
     background-attachment: fixed !important;
-    color: #f1f5f9 !important;
+    color: #fef3c7 !important;
 }
 
-/* Sleek 3D Sidebar */
+/* 3D Temple Sanctum Sidebar */
 section[data-testid="stSidebar"] {
-    background: linear-gradient(180deg, #090e1a 0%, #050810 100%) !important;
-    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: 10px 0 35px rgba(0, 0, 0, 0.7) !important;
+    background: linear-gradient(180deg, #110c08 0%, #080503 100%) !important;
+    border-right: 1px solid rgba(217, 119, 6, 0.25) !important;
+    box-shadow: 10px 0 35px rgba(0, 0, 0, 0.85) !important;
 }
 
 .sidebar-title {
-    font-size: 1.1rem;
+    font-family: 'Cinzel', serif !important;
+    font-size: 1.15rem;
     font-weight: 700;
-    color: #f8fafc;
-    letter-spacing: 0.05em;
+    color: #fef3c7;
+    letter-spacing: 0.1em;
     margin-top: 0.5rem;
     margin-bottom: 1.2rem;
     padding-bottom: 0.6rem;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    border-bottom: 1px solid rgba(217, 119, 6, 0.25);
     display: flex;
     align-items: center;
     gap: 8px;
+    text-shadow: 0 0 12px rgba(245, 158, 11, 0.4);
 }
 
-/* 3D Hero Title & Floating Badge */
+/* 3D Hero Ancient Title & Floating Relic Badge */
 .hero-container {
     text-align: center;
     padding: 1.5rem 0 1.2rem 0;
@@ -81,68 +83,72 @@ section[data-testid="stSidebar"] {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
-    border: 1px solid rgba(129, 140, 248, 0.4);
-    border-top: 1px solid rgba(255, 255, 255, 0.4);
-    color: #c7d2fe;
+    background: linear-gradient(135deg, rgba(217, 119, 6, 0.22) 0%, rgba(180, 83, 9, 0.15) 100%);
+    border: 1px solid rgba(245, 158, 11, 0.45);
+    border-top: 1px solid rgba(254, 240, 138, 0.5);
+    color: #fde68a;
+    font-family: 'Cinzel', serif !important;
     font-size: 0.75rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    padding: 0.35rem 0.95rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    padding: 0.35rem 1rem;
     border-radius: 9999px;
     margin-bottom: 0.9rem;
-    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    box-shadow: 0 4px 18px rgba(217, 119, 6, 0.35), inset 0 1px 0 rgba(254, 240, 138, 0.35);
     text-transform: uppercase;
 }
 
 .pulse-dot {
     width: 7px;
     height: 7px;
-    background: #38bdf8;
+    background: #fbbf24;
     border-radius: 50%;
-    box-shadow: 0 0 12px #38bdf8;
-    animation: pulseGlow 2s infinite ease-in-out;
+    box-shadow: 0 0 12px #fbbf24;
+    animation: emberPulse 2s infinite ease-in-out;
 }
 
-@keyframes pulseGlow {
+@keyframes emberPulse {
     0%, 100% { transform: scale(1); opacity: 1; }
     50% { transform: scale(1.4); opacity: 0.5; }
 }
 
 .hero-title {
-    font-size: 2.5rem;
-    font-weight: 800;
-    background: linear-gradient(135deg, #ffffff 15%, #cbd5e1 50%, #818cf8 100%);
+    font-family: 'Cinzel', serif !important;
+    font-size: 2.6rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #ffffff 15%, #fde68a 50%, #d97706 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
-    letter-spacing: -0.025em;
+    letter-spacing: 0.06em;
     margin-bottom: 0.35rem;
-    filter: drop-shadow(0 4px 16px rgba(99, 102, 241, 0.35));
+    filter: drop-shadow(0 4px 18px rgba(217, 119, 6, 0.45));
+    text-transform: uppercase;
 }
 
 .hero-subtitle {
-    font-size: 1rem;
-    color: #94a3b8;
+    font-size: 1.02rem;
+    color: #d4af37;
     font-weight: 400;
     max-width: 620px;
     margin: 0 auto 1.8rem auto;
     line-height: 1.5;
+    opacity: 0.9;
 }
 
-/* 3D Glassmorphic HUD Status Box */
+/* 3D Inscribed Stone Slab Status Box */
 .status-box {
-    background: linear-gradient(135deg, rgba(20, 28, 48, 0.75) 0%, rgba(11, 17, 31, 0.85) 100%) !important;
+    background: linear-gradient(135deg, rgba(28, 20, 14, 0.85) 0%, rgba(15, 11, 7, 0.95) 100%) !important;
     backdrop-filter: blur(16px) !important;
-    border: 1px solid rgba(99, 102, 241, 0.28) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border: 1px solid rgba(217, 119, 6, 0.35) !important;
+    border-top: 1px solid rgba(254, 240, 138, 0.35) !important;
     border-radius: 14px !important;
     padding: 1rem 1.4rem !important;
-    color: #e2e8f0 !important;
+    color: #fef3c7 !important;
     margin: 1.2rem 0 !important;
     box-shadow: 
-        0 12px 30px -5px rgba(0, 0, 0, 0.6), 
-        0 0 25px -4px rgba(99, 102, 241, 0.25), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+        0 14px 35px -5px rgba(0, 0, 0, 0.85), 
+        0 0 25px -4px rgba(217, 119, 6, 0.25), 
+        inset 0 1px 0 rgba(254, 240, 138, 0.15) !important;
     transform: translateY(0);
     transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
@@ -150,122 +156,126 @@ section[data-testid="stSidebar"] {
 .status-box:hover {
     transform: translateY(-2px);
     box-shadow: 
-        0 18px 36px -5px rgba(0, 0, 0, 0.7), 
-        0 0 35px -2px rgba(99, 102, 241, 0.4), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+        0 18px 40px -5px rgba(0, 0, 0, 0.95), 
+        0 0 35px -2px rgba(245, 158, 11, 0.4), 
+        inset 0 1px 0 rgba(254, 240, 138, 0.3) !important;
 }
 
-/* 3D Tactile Push Buttons */
+/* 3D Forged Bronze Tactile Buttons */
 .stButton>button {
-    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #4338ca 100%) !important;
-    color: #ffffff !important;
-    border: none !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
+    background: linear-gradient(135deg, #d97706 0%, #b45309 50%, #92400e 100%) !important;
+    color: #fffbeb !important;
+    border: 1px solid rgba(254, 240, 138, 0.3) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.55) !important;
     border-radius: 10px !important;
     padding: 0.65rem 1.25rem !important;
-    font-weight: 600 !important;
-    letter-spacing: 0.02em !important;
+    font-weight: 700 !important;
+    font-family: 'Cinzel', serif !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
     width: 100% !important;
     box-shadow: 
-        0 4px 0 #312e81, 
-        0 8px 22px rgba(79, 70, 229, 0.45), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+        0 4px 0 #451a03, 
+        0 8px 24px rgba(217, 119, 6, 0.45), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.4) !important;
     transform: translateY(0) !important;
     transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
     cursor: pointer !important;
 }
 
 .stButton>button:hover {
-    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+    background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%) !important;
     box-shadow: 
-        0 6px 0 #312e81, 
-        0 14px 28px rgba(99, 102, 241, 0.55), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+        0 6px 0 #451a03, 
+        0 14px 28px rgba(245, 158, 11, 0.6), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.55) !important;
     transform: translateY(-2px) !important;
 }
 
 .stButton>button:active {
     box-shadow: 
-        0 1px 0 #312e81, 
-        0 4px 12px rgba(79, 70, 229, 0.3), 
-        inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+        0 1px 0 #451a03, 
+        0 4px 10px rgba(180, 83, 9, 0.35), 
+        inset 0 1px 2px rgba(0, 0, 0, 0.4) !important;
     transform: translateY(3px) !important;
 }
 
-/* 3D Glass Expander */
+/* 3D Ancient Glass Expander */
 [data-testid="stExpander"] {
-    background: linear-gradient(135deg, rgba(24, 33, 53, 0.55) 0%, rgba(13, 20, 36, 0.75) 100%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+    background: linear-gradient(135deg, rgba(28, 21, 14, 0.65) 0%, rgba(14, 10, 7, 0.85) 100%) !important;
+    border: 1px solid rgba(217, 119, 6, 0.25) !important;
+    border-top: 1px solid rgba(254, 240, 138, 0.25) !important;
     border-radius: 14px !important;
     box-shadow: 
-        0 10px 30px -5px rgba(0, 0, 0, 0.5), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+        0 10px 30px -5px rgba(0, 0, 0, 0.75), 
+        inset 0 1px 0 rgba(254, 240, 138, 0.1) !important;
     backdrop-filter: blur(14px) !important;
     overflow: hidden !important;
     transition: all 0.25s ease !important;
 }
 
 [data-testid="stExpander"]:hover {
-    border-color: rgba(99, 102, 241, 0.4) !important;
+    border-color: rgba(245, 158, 11, 0.5) !important;
     box-shadow: 
-        0 14px 35px -5px rgba(0, 0, 0, 0.6), 
-        0 0 22px rgba(99, 102, 241, 0.2) !important;
+        0 14px 35px -5px rgba(0, 0, 0, 0.85), 
+        0 0 25px rgba(217, 119, 6, 0.25) !important;
 }
 
-/* 3D Segmented Tabs */
+/* 3D Segmented Inscribed Tabs */
 .stTabs [data-baseweb="tab-list"] {
-    background: rgba(13, 20, 36, 0.7) !important;
+    background: rgba(16, 12, 8, 0.8) !important;
     border-radius: 11px !important;
     padding: 5px !important;
-    border: 1px solid rgba(255, 255, 255, 0.08) !important;
-    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4) !important;
+    border: 1px solid rgba(217, 119, 6, 0.25) !important;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.5) !important;
     gap: 6px !important;
 }
 
 .stTabs [data-baseweb="tab"] {
     border-radius: 8px !important;
-    color: #94a3b8 !important;
-    font-weight: 500 !important;
+    color: #d4af37 !important;
+    font-family: 'Cinzel', serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.05em !important;
     padding: 0.55rem 1.1rem !important;
     border: none !important;
     transition: all 0.2s ease !important;
 }
 
 .stTabs [aria-selected="true"] {
-    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
-    color: #ffffff !important;
-    font-weight: 600 !important;
-    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+    background: linear-gradient(135deg, #b45309 0%, #d97706 100%) !important;
+    color: #fffbeb !important;
+    font-weight: 700 !important;
+    box-shadow: 0 4px 14px rgba(217, 119, 6, 0.5), inset 0 1px 0 rgba(254, 240, 138, 0.4) !important;
 }
 
-/* 3D File Uploader Box */
+/* 3D Ancient Scroll Uploader */
 [data-testid="stFileUploader"] section {
-    background: linear-gradient(135deg, rgba(30, 41, 59, 0.25) 0%, rgba(15, 23, 42, 0.45) 100%) !important;
-    border: 2px dashed rgba(99, 102, 241, 0.38) !important;
+    background: linear-gradient(135deg, rgba(35, 25, 16, 0.3) 0%, rgba(18, 12, 8, 0.55) 100%) !important;
+    border: 2px dashed rgba(217, 119, 6, 0.45) !important;
     border-radius: 12px !important;
     padding: 1.6rem !important;
     transition: all 0.25s ease !important;
 }
 
 [data-testid="stFileUploader"] section:hover {
-    border-color: #818cf8 !important;
-    background: linear-gradient(135deg, rgba(49, 46, 129, 0.25) 0%, rgba(15, 23, 42, 0.6) 100%) !important;
-    box-shadow: 0 0 25px rgba(99, 102, 241, 0.25) !important;
+    border-color: #fbbf24 !important;
+    background: linear-gradient(135deg, rgba(55, 35, 20, 0.4) 0%, rgba(20, 14, 9, 0.7) 100%) !important;
+    box-shadow: 0 0 28px rgba(217, 119, 6, 0.3) !important;
 }
 
-/* 3D Chat Messages with Depth */
+/* 3D Ancient Codex Messages */
 [data-testid="stChatMessage"] {
-    background: linear-gradient(135deg, rgba(22, 30, 49, 0.75) 0%, rgba(13, 20, 36, 0.85) 100%) !important;
-    border: 1px solid rgba(255, 255, 255, 0.07) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
-    border-left: 3px solid #6366f1 !important;
+    background: linear-gradient(135deg, rgba(28, 20, 14, 0.8) 0%, rgba(15, 11, 7, 0.92) 100%) !important;
+    border: 1px solid rgba(217, 119, 6, 0.22) !important;
+    border-top: 1px solid rgba(254, 240, 138, 0.22) !important;
+    border-left: 3px solid #d97706 !important;
     border-radius: 14px !important;
     padding: 1.15rem 1.4rem !important;
     margin-bottom: 1.1rem !important;
     box-shadow: 
-        0 12px 28px -5px rgba(0, 0, 0, 0.5), 
-        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+        0 12px 28px -5px rgba(0, 0, 0, 0.7), 
+        inset 0 1px 0 rgba(254, 240, 138, 0.1) !important;
     backdrop-filter: blur(14px) !important;
     transition: all 0.2s ease !important;
 }
@@ -273,62 +283,62 @@ section[data-testid="stSidebar"] {
 [data-testid="stChatMessage"]:hover {
     transform: translateY(-1px);
     box-shadow: 
-        0 16px 34px -5px rgba(0, 0, 0, 0.6), 
-        0 0 20px rgba(99, 102, 241, 0.15) !important;
+        0 16px 34px -5px rgba(0, 0, 0, 0.85), 
+        0 0 20px rgba(217, 119, 6, 0.25) !important;
 }
 
-/* 3D Floating Chat Input Dock */
+/* 3D Obsidian Inscription Input Dock */
 [data-testid="stChatInput"] {
     background: transparent !important;
     border-radius: 16px !important;
 }
 
 [data-testid="stChatInput"] textarea {
-    background: linear-gradient(135deg, rgba(19, 27, 44, 0.92) 0%, rgba(11, 17, 30, 0.98) 100%) !important;
-    border: 1px solid rgba(99, 102, 241, 0.35) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
+    background: linear-gradient(135deg, rgba(24, 18, 12, 0.95) 0%, rgba(13, 9, 6, 0.98) 100%) !important;
+    border: 1px solid rgba(217, 119, 6, 0.4) !important;
+    border-top: 1px solid rgba(254, 240, 138, 0.3) !important;
     border-radius: 14px !important;
     box-shadow: 
-        0 12px 35px -5px rgba(0, 0, 0, 0.7), 
-        0 0 25px rgba(99, 102, 241, 0.18), 
-        inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
-    color: #f8fafc !important;
+        0 12px 35px -5px rgba(0, 0, 0, 0.85), 
+        0 0 25px rgba(217, 119, 6, 0.2), 
+        inset 0 2px 4px rgba(0, 0, 0, 0.6) !important;
+    color: #fef3c7 !important;
     font-size: 0.96rem !important;
     transition: all 0.25s ease !important;
 }
 
 [data-testid="stChatInput"] textarea:focus {
-    border-color: #818cf8 !important;
+    border-color: #f59e0b !important;
     box-shadow: 
-        0 16px 40px -5px rgba(0, 0, 0, 0.8), 
-        0 0 35px rgba(99, 102, 241, 0.45), 
-        inset 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+        0 16px 40px -5px rgba(0, 0, 0, 0.95), 
+        0 0 35px rgba(245, 158, 11, 0.5), 
+        inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* 3D Selectbox & Sliders in Sidebar */
 [data-baseweb="select"] > div {
-    background: rgba(19, 27, 44, 0.8) !important;
-    border: 1px solid rgba(99, 102, 241, 0.3) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    background: rgba(24, 18, 12, 0.85) !important;
+    border: 1px solid rgba(217, 119, 6, 0.35) !important;
+    border-top: 1px solid rgba(254, 240, 138, 0.2) !important;
     border-radius: 8px !important;
-    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Custom 3D Neon Scrollbar */
+/* Custom 3D Antique Gold Scrollbar */
 ::-webkit-scrollbar {
     width: 8px;
     height: 8px;
 }
 ::-webkit-scrollbar-track {
-    background: #080c14;
+    background: #0a0705;
 }
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(180deg, #4f46e5 0%, #312e81 100%);
+    background: linear-gradient(180deg, #d97706 0%, #78350f 100%);
     border-radius: 9999px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(254, 240, 138, 0.25);
 }
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(180deg, #6366f1 0%, #4338ca 100%);
+    background: linear-gradient(180deg, #f59e0b 0%, #92400e 100%);
 }
 
 /* Mobile responsiveness */
@@ -396,7 +406,7 @@ db_stats = st.session_state.db_stats
 # SIDEBAR: CONFIGURATIONS
 # ----------------------------------------------------
 with st.sidebar:
-    st.markdown("<div class='sidebar-title'><span style='color: #818cf8;'>✦</span> SYSTEM CONTROL</div>", unsafe_allow_html=True)
+    st.markdown("<div class='sidebar-title'><span style='color: #f59e0b;'>⚜️</span> ORACLE SANCTUM</div>", unsafe_allow_html=True)
     
     available_models = get_available_models(api_key)
     model_choice = st.selectbox(
@@ -457,12 +467,12 @@ with st.sidebar:
 # MAIN CONTENT PANEL
 # ----------------------------------------------------
 
-# 3D Hero Title & Floating Badge
+# 3D Hero Title & Ancient Relic Badge
 st.markdown("""
 <div class='hero-container'>
-    <div class='hero-badge'><span class='pulse-dot'></span> Universal RAG Engine • Groq Accelerated</div>
-    <div class='hero-title'>Conversational Intelligence</div>
-    <div class='hero-subtitle'>Explore and query documents, reports, and web sources with real-time vector synthesis.</div>
+    <div class='hero-badge'><span class='pulse-dot'></span> ⚜️ ANCIENT CODEX • GROQ ORACLE ENGINE ⚜️</div>
+    <div class='hero-title'>ARCHIVAL ORACLE</div>
+    <div class='hero-subtitle'>Consult the ancient scrolls, sacred codices, and modern texts through 3D vector alchemy.</div>
 </div>
 """, unsafe_allow_html=True)
 
@@ -818,36 +828,36 @@ with st.expander("Ingest Document or Web Page", expanded=is_db_empty):
                     delete_collection(st.session_state.collection_name)
                     st.error(f"Failed to process website: {str(e)}")
 
-# Active status indicator (3D HUD)
+# Active status indicator (3D Ancient Inscribed HUD)
 if db_stats['chunks'] > 0:
-    source_type = "Document" if st.session_state.indexed_source == "Document" else "Website"
+    source_type = "Sacred Scroll" if st.session_state.indexed_source == "Document" else "Oracle Web"
     if st.session_state.indexed_source == "None":
-        source_type = "Previous Session"
-        st.session_state.source_name = "Loaded session vectors"
+        source_type = "Preserved Relic"
+        st.session_state.source_name = "Inscribed Codex Vectors"
         st.session_state.chunk_count = db_stats['chunks']
         
     st.markdown(f"""
     <div class='status-box'>
         <div style='display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;'>
             <div>
-                <span style='color: #818cf8; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;'>Active Knowledge Base</span>
-                <div style='font-size: 1.05rem; font-weight: 600; color: #f8fafc; margin-top: 2px;'>{st.session_state.source_name} <span style='font-size: 0.8rem; color: #94a3b8; font-weight: 400;'>({source_type})</span></div>
+                <span style='color: #f59e0b; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.12em; font-family: "Cinzel", serif;'>📜 Active Inscribed Codex</span>
+                <div style='font-size: 1.05rem; font-weight: 600; color: #fef3c7; margin-top: 2px;'>{st.session_state.source_name} <span style='font-size: 0.8rem; color: #d97706; font-weight: 400;'>({source_type})</span></div>
             </div>
-            <div style='background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.35); border-radius: 8px; padding: 0.35rem 0.75rem; text-align: center;'>
-                <span style='font-size: 0.7rem; color: #a5b4fc; display: block; font-weight: 600;'>CHUNKS INDEXED</span>
-                <span style='font-size: 1.15rem; font-weight: 700; color: #ffffff;'>{st.session_state.chunk_count}</span>
+            <div style='background: rgba(217, 119, 6, 0.15); border: 1px solid rgba(245, 158, 11, 0.4); border-radius: 8px; padding: 0.35rem 0.85rem; text-align: center; box-shadow: inset 0 1px 0 rgba(254, 240, 138, 0.2);'>
+                <span style='font-size: 0.68rem; color: #fde68a; display: block; font-weight: 700; font-family: "Cinzel", serif; letter-spacing: 0.08em;'>SEALS INSCRIBED</span>
+                <span style='font-size: 1.2rem; font-weight: 800; color: #fbbf24; font-family: "Cinzel", serif;'>{st.session_state.chunk_count}</span>
             </div>
         </div>
     </div>
     """, unsafe_allow_html=True)
 else:
     st.markdown("""
-    <div class='status-box' style='border-color: rgba(245, 158, 11, 0.35); background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(15, 23, 42, 0.85) 100%);'>
-        <div style='display: flex; align-items: center; gap: 10px; color: #fbbf24;'>
-            <span style='font-size: 1.25rem;'>⚡</span>
+    <div class='status-box' style='border-color: rgba(217, 119, 6, 0.35); background: linear-gradient(135deg, rgba(28, 20, 14, 0.85) 0%, rgba(14, 10, 7, 0.95) 100%);'>
+        <div style='display: flex; align-items: center; gap: 12px; color: #fbbf24;'>
+            <span style='font-size: 1.4rem;'>🏺</span>
             <div>
-                <div style='font-weight: 600; font-size: 0.92rem;'>No Active Context</div>
-                <div style='font-size: 0.82rem; color: #94a3b8;'>Ingest a document or web page above to start conversational querying.</div>
+                <div style='font-weight: 700; font-size: 0.95rem; font-family: "Cinzel", serif; letter-spacing: 0.05em;'>The Archive is Quiet</div>
+                <div style='font-size: 0.82rem; color: #d4af37; opacity: 0.85;'>Inscribe a manuscript or sacred web scroll above to awaken the Oracle.</div>
             </div>
         </div>
     </div>
@@ -859,13 +869,13 @@ else:
 chat_container = st.container()
 
 with chat_container:
-    # Print clean chat history
+    # Print clean chat history with Ancient Scribe & Oracle avatars
     for msg in st.session_state.messages:
-        with st.chat_message(msg["role"], avatar="🧑‍💻" if msg["role"] == "user" else "🤖"):
+        with st.chat_message(msg["role"], avatar="🪶" if msg["role"] == "user" else "🏛️"):
             st.markdown(msg["content"])
 
 # Lock prompt if database contains no documents or a query is processing
-prompt = st.chat_input("Ask a question...", disabled=is_db_empty or st.session_state.get("processing", False))
+prompt = st.chat_input("Inquire of the ancient codex...", disabled=is_db_empty or st.session_state.get("processing", False))
 
 if prompt:
     if not api_key:
@@ -880,8 +890,8 @@ if prompt:
 if st.session_state.get("processing", False) and "current_prompt" in st.session_state:
     current_prompt = st.session_state.current_prompt
     with chat_container:
-        with st.chat_message("assistant", avatar="🤖"):
-            with st.spinner("Thinking..."):
+        with st.chat_message("assistant", avatar="🏛️"):
+            with st.spinner("Consulting the sacred archives..."):
                 try:
                     # Filter out basic greetings, acknowledgments, or politeness turns to bypass retrieval and optimize TPM
                     if is_conversational_query(current_prompt):
