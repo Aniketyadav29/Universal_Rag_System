@@ -29,109 +29,328 @@ st.set_page_config(
     layout="centered"
 )
 
-# Custom minimalist styling (ChatGPT inspired)
+# Custom 3D Glassmorphic Aesthetic & Micro-animations
 st.markdown("""
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
 
 html, body, [class*="css"], .stMarkdown {
     font-family: 'Outfit', sans-serif !important;
 }
 
-.hero-title {
-    font-size: 2.2rem;
+/* 3D Immersive Ambient Background */
+.stApp {
+    background: 
+        radial-gradient(circle at 10% 10%, rgba(99, 102, 241, 0.16) 0%, transparent 45%),
+        radial-gradient(circle at 90% 85%, rgba(168, 85, 247, 0.14) 0%, transparent 50%),
+        radial-gradient(circle at 50% 50%, rgba(14, 165, 233, 0.08) 0%, transparent 55%),
+        #070a12 !important;
+    background-attachment: fixed !important;
+    color: #f1f5f9 !important;
+}
+
+/* Sleek 3D Sidebar */
+section[data-testid="stSidebar"] {
+    background: linear-gradient(180deg, #090e1a 0%, #050810 100%) !important;
+    border-right: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: 10px 0 35px rgba(0, 0, 0, 0.7) !important;
+}
+
+.sidebar-title {
+    font-size: 1.1rem;
     font-weight: 700;
-    color: #f1f5f9;
+    color: #f8fafc;
+    letter-spacing: 0.05em;
+    margin-top: 0.5rem;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* 3D Hero Title & Floating Badge */
+.hero-container {
     text-align: center;
-    margin-top: 1.5rem;
-    margin-bottom: 0.2rem;
+    padding: 1.5rem 0 1.2rem 0;
+    position: relative;
+}
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, rgba(99, 102, 241, 0.2) 0%, rgba(168, 85, 247, 0.15) 100%);
+    border: 1px solid rgba(129, 140, 248, 0.4);
+    border-top: 1px solid rgba(255, 255, 255, 0.4);
+    color: #c7d2fe;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 0.35rem 0.95rem;
+    border-radius: 9999px;
+    margin-bottom: 0.9rem;
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+}
+
+.pulse-dot {
+    width: 7px;
+    height: 7px;
+    background: #38bdf8;
+    border-radius: 50%;
+    box-shadow: 0 0 12px #38bdf8;
+    animation: pulseGlow 2s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.4); opacity: 0.5; }
+}
+
+.hero-title {
+    font-size: 2.5rem;
+    font-weight: 800;
+    background: linear-gradient(135deg, #ffffff 15%, #cbd5e1 50%, #818cf8 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.025em;
+    margin-bottom: 0.35rem;
+    filter: drop-shadow(0 4px 16px rgba(99, 102, 241, 0.35));
 }
 
 .hero-subtitle {
     font-size: 1rem;
     color: #94a3b8;
-    text-align: center;
-    margin-bottom: 2rem;
+    font-weight: 400;
+    max-width: 620px;
+    margin: 0 auto 1.8rem auto;
+    line-height: 1.5;
 }
 
-/* Sidebar styling overrides */
-section[data-testid="stSidebar"] {
-    background-color: #0f172a;
-    border-right: 1px solid #334155;
-}
-
-.sidebar-title {
-    font-size: 1.15rem;
-    font-weight: 600;
-    color: #f8fafc;
-    margin-top: 0.5rem;
-    margin-bottom: 1rem;
-    border-bottom: 1px solid #334155;
-    padding-bottom: 0.5rem;
-}
-
-/* Clean status indicator */
+/* 3D Glassmorphic HUD Status Box */
 .status-box {
-    background-color: #1e293b;
-    border: 1px solid #334155;
-    border-radius: 8px;
-    padding: 0.8rem 1.2rem;
-    color: #e2e8f0;
-    font-size: 0.9rem;
-    margin-top: 1rem;
-    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, rgba(20, 28, 48, 0.75) 0%, rgba(11, 17, 31, 0.85) 100%) !important;
+    backdrop-filter: blur(16px) !important;
+    border: 1px solid rgba(99, 102, 241, 0.28) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border-radius: 14px !important;
+    padding: 1rem 1.4rem !important;
+    color: #e2e8f0 !important;
+    margin: 1.2rem 0 !important;
+    box-shadow: 
+        0 12px 30px -5px rgba(0, 0, 0, 0.6), 
+        0 0 25px -4px rgba(99, 102, 241, 0.25), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.12) !important;
+    transform: translateY(0);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
 }
 
-/* Primary Button overrides */
+.status-box:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 18px 36px -5px rgba(0, 0, 0, 0.7), 
+        0 0 35px -2px rgba(99, 102, 241, 0.4), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 3D Tactile Push Buttons */
 .stButton>button {
-    background-color: #2563eb !important;
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 50%, #4338ca 100%) !important;
     color: #ffffff !important;
-    border: 1px solid #3b82f6 !important;
-    border-radius: 6px !important;
-    padding: 0.5rem 1rem !important;
-    font-weight: 500 !important;
+    border: none !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
+    border-radius: 10px !important;
+    padding: 0.65rem 1.25rem !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.02em !important;
     width: 100% !important;
-    transition: background-color 0.15s ease-in-out !important;
+    box-shadow: 
+        0 4px 0 #312e81, 
+        0 8px 22px rgba(79, 70, 229, 0.45), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+    transform: translateY(0) !important;
+    transition: all 0.15s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    cursor: pointer !important;
 }
 
 .stButton>button:hover {
-    background-color: #1d4ed8 !important;
-    box-shadow: none !important;
-    transform: none !important;
+    background: linear-gradient(135deg, #6366f1 0%, #4f46e5 100%) !important;
+    box-shadow: 
+        0 6px 0 #312e81, 
+        0 14px 28px rgba(99, 102, 241, 0.55), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.45) !important;
+    transform: translateY(-2px) !important;
 }
 
-/* Mobile-friendly responsiveness overrides */
+.stButton>button:active {
+    box-shadow: 
+        0 1px 0 #312e81, 
+        0 4px 12px rgba(79, 70, 229, 0.3), 
+        inset 0 1px 2px rgba(0, 0, 0, 0.3) !important;
+    transform: translateY(3px) !important;
+}
+
+/* 3D Glass Expander */
+[data-testid="stExpander"] {
+    background: linear-gradient(135deg, rgba(24, 33, 53, 0.55) 0%, rgba(13, 20, 36, 0.75) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.18) !important;
+    border-radius: 14px !important;
+    box-shadow: 
+        0 10px 30px -5px rgba(0, 0, 0, 0.5), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    backdrop-filter: blur(14px) !important;
+    overflow: hidden !important;
+    transition: all 0.25s ease !important;
+}
+
+[data-testid="stExpander"]:hover {
+    border-color: rgba(99, 102, 241, 0.4) !important;
+    box-shadow: 
+        0 14px 35px -5px rgba(0, 0, 0, 0.6), 
+        0 0 22px rgba(99, 102, 241, 0.2) !important;
+}
+
+/* 3D Segmented Tabs */
+.stTabs [data-baseweb="tab-list"] {
+    background: rgba(13, 20, 36, 0.7) !important;
+    border-radius: 11px !important;
+    padding: 5px !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.4) !important;
+    gap: 6px !important;
+}
+
+.stTabs [data-baseweb="tab"] {
+    border-radius: 8px !important;
+    color: #94a3b8 !important;
+    font-weight: 500 !important;
+    padding: 0.55rem 1.1rem !important;
+    border: none !important;
+    transition: all 0.2s ease !important;
+}
+
+.stTabs [aria-selected="true"] {
+    background: linear-gradient(135deg, #4f46e5 0%, #6366f1 100%) !important;
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.35) !important;
+}
+
+/* 3D File Uploader Box */
+[data-testid="stFileUploader"] section {
+    background: linear-gradient(135deg, rgba(30, 41, 59, 0.25) 0%, rgba(15, 23, 42, 0.45) 100%) !important;
+    border: 2px dashed rgba(99, 102, 241, 0.38) !important;
+    border-radius: 12px !important;
+    padding: 1.6rem !important;
+    transition: all 0.25s ease !important;
+}
+
+[data-testid="stFileUploader"] section:hover {
+    border-color: #818cf8 !important;
+    background: linear-gradient(135deg, rgba(49, 46, 129, 0.25) 0%, rgba(15, 23, 42, 0.6) 100%) !important;
+    box-shadow: 0 0 25px rgba(99, 102, 241, 0.25) !important;
+}
+
+/* 3D Chat Messages with Depth */
+[data-testid="stChatMessage"] {
+    background: linear-gradient(135deg, rgba(22, 30, 49, 0.75) 0%, rgba(13, 20, 36, 0.85) 100%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.07) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.16) !important;
+    border-left: 3px solid #6366f1 !important;
+    border-radius: 14px !important;
+    padding: 1.15rem 1.4rem !important;
+    margin-bottom: 1.1rem !important;
+    box-shadow: 
+        0 12px 28px -5px rgba(0, 0, 0, 0.5), 
+        inset 0 1px 0 rgba(255, 255, 255, 0.08) !important;
+    backdrop-filter: blur(14px) !important;
+    transition: all 0.2s ease !important;
+}
+
+[data-testid="stChatMessage"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 
+        0 16px 34px -5px rgba(0, 0, 0, 0.6), 
+        0 0 20px rgba(99, 102, 241, 0.15) !important;
+}
+
+/* 3D Floating Chat Input Dock */
+[data-testid="stChatInput"] {
+    background: transparent !important;
+    border-radius: 16px !important;
+}
+
+[data-testid="stChatInput"] textarea {
+    background: linear-gradient(135deg, rgba(19, 27, 44, 0.92) 0%, rgba(11, 17, 30, 0.98) 100%) !important;
+    border: 1px solid rgba(99, 102, 241, 0.35) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.22) !important;
+    border-radius: 14px !important;
+    box-shadow: 
+        0 12px 35px -5px rgba(0, 0, 0, 0.7), 
+        0 0 25px rgba(99, 102, 241, 0.18), 
+        inset 0 2px 4px rgba(0, 0, 0, 0.4) !important;
+    color: #f8fafc !important;
+    font-size: 0.96rem !important;
+    transition: all 0.25s ease !important;
+}
+
+[data-testid="stChatInput"] textarea:focus {
+    border-color: #818cf8 !important;
+    box-shadow: 
+        0 16px 40px -5px rgba(0, 0, 0, 0.8), 
+        0 0 35px rgba(99, 102, 241, 0.45), 
+        inset 0 1px 2px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* 3D Selectbox & Sliders in Sidebar */
+[data-baseweb="select"] > div {
+    background: rgba(19, 27, 44, 0.8) !important;
+    border: 1px solid rgba(99, 102, 241, 0.3) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.15) !important;
+    border-radius: 8px !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.3) !important;
+}
+
+/* Custom 3D Neon Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #080c14;
+}
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, #4f46e5 0%, #312e81 100%);
+    border-radius: 9999px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, #6366f1 0%, #4338ca 100%);
+}
+
+/* Mobile responsiveness */
 @media (max-width: 768px) {
-    /* Reduce block-container padding to maximize screen width on mobile */
     [data-testid="stAppViewBlockContainer"], .block-container {
         padding-left: 1rem !important;
         padding-right: 1rem !important;
-        padding-top: 1.5rem !important;
+        padding-top: 1.2rem !important;
         padding-bottom: 3.5rem !important;
     }
     
     .hero-title {
-        font-size: 1.6rem !important;
-        margin-top: 0.5rem !important;
-        margin-bottom: 0.2rem !important;
+        font-size: 1.8rem !important;
     }
     
     .hero-subtitle {
-        font-size: 0.85rem !important;
-        margin-bottom: 1rem !important;
+        font-size: 0.88rem !important;
+        margin-bottom: 1.2rem !important;
     }
     
     .status-box {
-        padding: 0.6rem 0.8rem !important;
-        font-size: 0.8rem !important;
-        margin-top: 0.5rem !important;
-        margin-bottom: 1rem !important;
-    }
-    
-    /* Compact tabs padding for small screen width */
-    .stTabs [data-baseweb="tab"] {
-        padding-left: 0.5rem !important;
-        padding-right: 0.5rem !important;
+        padding: 0.75rem 0.95rem !important;
         font-size: 0.85rem !important;
     }
 }
@@ -177,7 +396,7 @@ db_stats = st.session_state.db_stats
 # SIDEBAR: CONFIGURATIONS
 # ----------------------------------------------------
 with st.sidebar:
-    st.markdown("<div class='sidebar-title'>Control Panel</div>", unsafe_allow_html=True)
+    st.markdown("<div class='sidebar-title'><span style='color: #818cf8;'>✦</span> SYSTEM CONTROL</div>", unsafe_allow_html=True)
     
     available_models = get_available_models(api_key)
     model_choice = st.selectbox(
@@ -238,9 +457,14 @@ with st.sidebar:
 # MAIN CONTENT PANEL
 # ----------------------------------------------------
 
-# Professional Minimal Title
-st.markdown("<div class='hero-title'>Conversational RAG System</div>", unsafe_allow_html=True)
-st.markdown("<div class='hero-subtitle'>Ask questions about your uploaded documents or web content.</div>", unsafe_allow_html=True)
+# 3D Hero Title & Floating Badge
+st.markdown("""
+<div class='hero-container'>
+    <div class='hero-badge'><span class='pulse-dot'></span> Universal RAG Engine • Groq Accelerated</div>
+    <div class='hero-title'>Conversational Intelligence</div>
+    <div class='hero-subtitle'>Explore and query documents, reports, and web sources with real-time vector synthesis.</div>
+</div>
+""", unsafe_allow_html=True)
 
 if not api_key or not api_key.strip():
     st.error("GROQ_API_KEY is missing from environment. Please verify your .env configuration.")
@@ -594,7 +818,7 @@ with st.expander("Ingest Document or Web Page", expanded=is_db_empty):
                     delete_collection(st.session_state.collection_name)
                     st.error(f"Failed to process website: {str(e)}")
 
-# Active status indicator
+# Active status indicator (3D HUD)
 if db_stats['chunks'] > 0:
     source_type = "Document" if st.session_state.indexed_source == "Document" else "Website"
     if st.session_state.indexed_source == "None":
@@ -604,14 +828,28 @@ if db_stats['chunks'] > 0:
         
     st.markdown(f"""
     <div class='status-box'>
-        Active Context: <b>{st.session_state.source_name}</b> ({source_type})<br>
-        Chunks Indexed: <b>{st.session_state.chunk_count}</b>
+        <div style='display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;'>
+            <div>
+                <span style='color: #818cf8; font-weight: 700; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em;'>Active Knowledge Base</span>
+                <div style='font-size: 1.05rem; font-weight: 600; color: #f8fafc; margin-top: 2px;'>{st.session_state.source_name} <span style='font-size: 0.8rem; color: #94a3b8; font-weight: 400;'>({source_type})</span></div>
+            </div>
+            <div style='background: rgba(99, 102, 241, 0.15); border: 1px solid rgba(99, 102, 241, 0.35); border-radius: 8px; padding: 0.35rem 0.75rem; text-align: center;'>
+                <span style='font-size: 0.7rem; color: #a5b4fc; display: block; font-weight: 600;'>CHUNKS INDEXED</span>
+                <span style='font-size: 1.15rem; font-weight: 700; color: #ffffff;'>{st.session_state.chunk_count}</span>
+            </div>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 else:
     st.markdown("""
-    <div class='status-box' style='border-color: #b45309; background-color: rgba(180, 83, 9, 0.05); color: #d97706;'>
-        No active context found. Ingest contents to start.
+    <div class='status-box' style='border-color: rgba(245, 158, 11, 0.35); background: linear-gradient(135deg, rgba(245, 158, 11, 0.08) 0%, rgba(15, 23, 42, 0.85) 100%);'>
+        <div style='display: flex; align-items: center; gap: 10px; color: #fbbf24;'>
+            <span style='font-size: 1.25rem;'>⚡</span>
+            <div>
+                <div style='font-weight: 600; font-size: 0.92rem;'>No Active Context</div>
+                <div style='font-size: 0.82rem; color: #94a3b8;'>Ingest a document or web page above to start conversational querying.</div>
+            </div>
+        </div>
     </div>
     """, unsafe_allow_html=True)
 
